@@ -6,12 +6,15 @@ router.get("/", (req, res) => {
         project:'API Web Service UAS'
     });
 });
-var mahasiswaApi = require('../api/controller/MahasiswaController');
+var barangApi = require('../api/controller/BarangController');
+const{createUserValidation}=require('../middleware/input-validation');
+const {upload} = require("../middleware/file");
 
-router.get('/mahasiswa', mahasiswaApi.get);
-router.get('/mahasiswa/:id', mahasiswaApi.getById);
-router.post('/mahasiswa', mahasiswaApi.create);
-router.put('/mahasiswa/:id', mahasiswaApi.update);
-
+router.get('/barang', barangApi.get);
+router.get('/barang/:id', barangApi.getById);
+router.post('/barang',createUserValidation, barangApi.create);
+router.put('/barang/:id',createUserValidation, barangApi.update);
+router.delete('/barang/:id', barangApi.delete);
+router.put('/barang/foto/:id', upload('uploads').single("file"), barangApi.updateFotoProfil);
 
 module.exports = router;

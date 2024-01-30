@@ -4,7 +4,9 @@ const app = express();
 const knex = require("./db/knex");
 const routerV1 = require('./routes/index')
 const bodyParser = require('body-parser')
-
+const swaggerUI = require("swagger-ui-express");
+const swaggerFile = require('./swagger_output.json')
+app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerFile))
 app.get("/ping", (req, res) => {
     res.send({
         error: false,

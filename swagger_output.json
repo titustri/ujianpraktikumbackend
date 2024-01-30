@@ -1,0 +1,248 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Ujian Praktikum BE API",
+    "description": "Ini adalah Endpoint dari Praktikum BackEnd",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000",
+  "basePath": "/data/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/barang": {
+      "get": {
+        "tags": [
+          "Barang"
+        ],
+        "description": "Endpoint untuk mengambil semua data barang",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Barang"
+        ],
+        "description": "Endpoint untuk memasukkan data penitipan barang",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRequestFormat"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/barang/{id}": {
+      "get": {
+        "tags": [
+          "Barang"
+        ],
+        "description": "Endpoint untuk mengambil data by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Barang"
+        ],
+        "description": "Endpoint untuk mengupdate data penitipan barang",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRequestFormat"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Barang"
+        ],
+        "description": "Endpoint untuk menghapus data barang",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/barang/foto/{id}": {
+      "put": {
+        "tags": [
+          "Barang"
+        ],
+        "description": "Endpoint untuk mengUpdate Foto Profil User",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "type": "file",
+            "in": "formData",
+            "description": "Foto profil user.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserRequestFormat": {
+      "type": "object",
+      "properties": {
+        "pemilik_barang": {
+          "type": "string",
+          "example": ""
+        },
+        "nama_barang": {
+          "type": "string",
+          "example": ""
+        },
+        "merk": {
+          "type": "string",
+          "example": ""
+        },
+        "jenis": {
+          "type": "string",
+          "example": ""
+        },
+        "kondisi": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "pemilik_barang",
+        "nama_barang",
+        "merk",
+        "jenis",
+        "kondisi"
+      ]
+    }
+  }
+}
