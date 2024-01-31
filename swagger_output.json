@@ -181,7 +181,7 @@
         "tags": [
           "Barang"
         ],
-        "description": "Endpoint untuk mengUpdate Foto Profil User",
+        "description": "Endpoint untuk mengupdate foto barang",
         "consumes": [
           "multipart/form-data"
         ],
